@@ -177,7 +177,11 @@ final class MethodCallHandlerImpl implements MethodCallHandler {
             } else {
                 if (enable) {
                     locationService.setResult(result);
-                    locationService.requestBackgroundPermissions();
+                    /* use foreground service that doesn't require 'always' permission
+                    https://github.com/Lyokone/flutterlocation/issues/600
+                    */
+                    //locationService.requestBackgroundPermissions();
+                    locationService.enableBackgroundMode();
                 } else {
                     locationService.disableBackgroundMode();
 
